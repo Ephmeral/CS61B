@@ -82,4 +82,22 @@ public class Planet {
 		}
 		return netF;
 	}
+
+	// 受到力的作用后，更新位置和速度
+	public void update(double dt, double fX, double fY) {
+		double ax = fX / mass;
+		double ay = fY / mass;
+		xxVel = xxVel + dt * ax;
+		yyVel = yyVel + dt * ay;
+		xxPos = xxPos + dt * xxVel;
+		yyPos = yyPos + dt * yyVel;
+	}
+
+	public void draw() {
+		/* Stamps three copies of advice.png in a triangular pattern. */
+		StdDraw.picture(xxPos, yyPos, "images/" + imgFileName);
+
+		/* Shows the drawing to the screen, and waits 2000 milliseconds. */
+		StdDraw.show();
+	}
 }
