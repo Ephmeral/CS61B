@@ -93,6 +93,7 @@ public class Planet {
 		yyPos = yyPos + dt * yyVel;
 	}
 
+	// 画出星球
 	public void draw() {
 		/* Stamps three copies of advice.png in a triangular pattern. */
 		StdDraw.picture(xxPos, yyPos, "images/" + imgFileName);
