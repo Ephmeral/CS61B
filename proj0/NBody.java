@@ -27,15 +27,33 @@ public class NBody {
 		Planet[] planet = readPlanets(filename);
 		StdDraw.setScale(-800, 800);
 
-		StdDraw.clear();
-
-		StdDraw.picture(0, 0, imageToDraw);
 
 		for (int i = 0; i <planet.length; i++) {
 			planet[i].draw();
 		}
 		/* Shows the drawing to the screen, and waits 2000 milliseconds. */
-		StdDraw.show();
-		StdDraw.pause(2000);
+
+		
+		StdDraw.enableDoubleBuffering();
+		int time = 0;
+		for (; time < T; time += dt) {
+			double[] xForces = new double[planet.length];
+			double[] yForces = new double[planet.length];
+			
+			for (int i = 0; i < planet.length; i++) {
+				xForces[i] = planet[i].calcNetForceExertedByX(planet);
+				yForces[i] = planet[i].calcNetForceExertedByY(planet);
+			}
+
+			for (int i = 0; i < planet.length; i++) {
+				planet[i].update(dt, xForces[i], yForces[i]);
+			}
+
+			StdDraw.clear();
+			StdDraw.picture(0, 0, imageToDraw);
+
+			StdDraw.show();
+			StdDraw.pause(10);
+		}
 	}
 }
