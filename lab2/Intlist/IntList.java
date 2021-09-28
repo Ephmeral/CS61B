@@ -108,7 +108,7 @@ public class IntList {
             p = p.rest;
             t = t.rest;
         }
-        return head;
+        return head.rest;
     }
 
 
