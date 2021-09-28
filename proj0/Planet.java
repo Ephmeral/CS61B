@@ -58,7 +58,7 @@ public class Planet {
 		return Fy;
 	}
 
-	public boolean equals(Planet p) {
+	private boolean equals(Planet p) {
 		if (this == p) return true;
 		return false;
 	}
