@@ -9,7 +9,7 @@ public class ArrayDeque<T> {
         items = (T[]) new Object[8];
         size = 0;
         head = 0;
-        tail = -1;
+        tail = 0;
         cap = 8;
     }
 
@@ -20,9 +20,15 @@ public class ArrayDeque<T> {
             old[i] = items[i];
         }
         items = (T[]) new Object[n];
-        System.arraycopy(old, 0, items, 0, tail);
-        System.arraycopy(old, head, items, n - (cap - head), cap - head);
-        head = n - (cap - head);
+        if (head >= tail) {
+            System.arraycopy(old, 0, items, 0, tail);
+            System.arraycopy(old, head, items, n - (cap - head), cap - head);
+            head = n - (cap - head);
+        } else {
+            System.arraycopy(old, head, items, 0, tail - head);
+            tail = tail - head;
+            head = 0;
+        }
         cap = n;
     }
 
@@ -39,7 +45,8 @@ public class ArrayDeque<T> {
         if (size == cap) {
             resize(cap * 2);
         }
-        items[++tail] = item;
+        items[tail] = item;
+        tail = (tail + 1) % cap;
         size++;
     }
 
@@ -62,7 +69,7 @@ public class ArrayDeque<T> {
 
     public T removeFirst() {
         if (size == 0) {
-            return (T)null;
+            return null;
         }
         T tmp = items[head];
         head = (head + 1) % cap;
@@ -75,13 +82,15 @@ public class ArrayDeque<T> {
 
     public T removeLast() {
         if (size == 0) {
-            return (T)null;
+            return null;
         }
         size--;
+        T tmp = items[(tail - 1 + cap) % cap];
+        tail = (tail - 1 + cap) % cap;
         while (cap > 16 && 4 * size < cap) {
             resize(cap / 2);
         }
-        return items[tail--];
+        return tmp;
     }
 
     public T get(int index) {
