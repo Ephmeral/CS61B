@@ -20,12 +20,6 @@ public class LinkedListDeque<T> {
         size = 0;
     }
 
-    public LinkedListDeque(T x) {
-        head = new ListNode((T)null, null, null);
-        head.next = new ListNode(x, null, head);
-        tail = head.next;
-        size = 1;
-    }
     public void addFirst(T item) {
         head.next = new ListNode(item, head.next, head);
         size++;
@@ -56,11 +50,10 @@ public class LinkedListDeque<T> {
 
     public T removeFirst() {
         if (size == 0) {
-            return (T)null;
+            return null;
         }
-        ListNode p;
-        T tmp = head.next.val;
-        p = head.next;
+        ListNode p = head.next;
+        T tmp = p.val;
         if (size == 1) {
             head.next = null;
             tail = head;
@@ -77,7 +70,7 @@ public class LinkedListDeque<T> {
     public T removeLast() {
         T tmp;
         if (size == 0) {
-            return (T)null;
+            return null;
         } else if (size == 1) {
             return removeFirst();
         } else {
