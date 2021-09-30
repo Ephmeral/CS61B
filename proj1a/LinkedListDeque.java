@@ -59,16 +59,16 @@ public class LinkedListDeque<T> {
             tail = head;
         } else {
             head.next = p.next;
-            p.next.prev = head;
-            p.next = null;
-            p.prev = null;
+            if (p.next != null) {
+                p.next.prev = head;
+            }
         }
         size--;
         return tmp;
     }
 
     public T removeLast() {
-        T tmp;
+        T tmp = (T) null;
         if (size == 0) {
             return null;
         } else if (size == 1) {
@@ -77,8 +77,6 @@ public class LinkedListDeque<T> {
             ListNode p = tail.prev;
             tmp = tail.val;
             p.next = null;
-            tail.next = null;
-            tail.prev = null;
             tail = p;
             size--;
         }
