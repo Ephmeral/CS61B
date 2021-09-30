@@ -67,8 +67,8 @@ public class ArrayDeque<T> {
         T tmp = items[head];
         head = (head + 1) % cap;
         size--;
-        if (size < cap / 2) {
-            resize(cap / 2);
+        if (size < cap / 4 * 3) {
+            resize(cap / 4 * 3);
         }
         return tmp;
     }
@@ -78,8 +78,8 @@ public class ArrayDeque<T> {
             return (T)null;
         }
         size--;
-        if (size < cap / 2) {
-            resize(cap / 2);
+        if (size < cap / 4 * 3) {
+            resize(cap / 4 * 3);
         }
         return items[--tail];
     }

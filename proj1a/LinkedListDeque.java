@@ -3,10 +3,10 @@ public class LinkedListDeque<T> {
         private T val;
         private ListNode prev;
         private ListNode next;
-        public ListNode(T item) {
+        public ListNode(T item, ListNode n, ListNode pre) {
             val = item;
-            next = null;
-            prev = null;
+            next = n;
+            prev = pre;
         }
     }
 
@@ -15,31 +15,24 @@ public class LinkedListDeque<T> {
     private int size;
 
     public LinkedListDeque() {
-        head = new ListNode(null);
+        head = new ListNode((T)null, null, null);
         tail = head;
         size = 0;
     }
 
+    public LinkedListDeque(T x) {
+        head = new ListNode((T)null, null, null);
+        head.next = new ListNode(x, null, head);
+        tail = head.next;
+        size = 1;
+    }
     public void addFirst(T item) {
-        ListNode node = new ListNode(item);
-        if (head.next == null) {
-            head.next = node;
-            node.prev = head;
-            tail = node;
-            node.next = null;
-        } else {
-            node.next = head.next;
-            head.next = node;
-            node.next.prev = node;
-            node.prev = head;
-        }
+        head.next = new ListNode(item, head.next, head);
         size++;
     }
 
     public void addLast(T item) {
-        ListNode node = new ListNode(item);
-        tail.next = node;
-        node.prev = tail;
+        tail.next = new ListNode(item, null, tail);
         tail = tail.next;
         size++;
     }
@@ -62,33 +55,40 @@ public class LinkedListDeque<T> {
     }
 
     public T removeFirst() {
-        if (head.next == null) {
-            return head.val;
+        if (size == 0) {
+            return (T)null;
         }
         ListNode p;
         T tmp = head.next.val;
         p = head.next;
-        if (p.next == null) {
+        if (size == 1) {
             head.next = null;
             tail = head;
         } else {
             head.next = p.next;
             p.next.prev = head;
+            p.next = null;
+            p.prev = null;
         }
         size--;
         return tmp;
     }
 
     public T removeLast() {
-        if (head.next == null) {
-            return head.val;
+        T tmp;
+        if (size == 0) {
+            return (T)null;
+        } else if (size == 1) {
+            return removeFirst();
+        } else {
+            ListNode p = tail.prev;
+            tmp = tail.val;
+            p.next = null;
+            tail.next = null;
+            tail.prev = null;
+            tail = p;
+            size--;
         }
-        ListNode p = tail.prev;
-        T tmp = tail.val;
-        tail.next = null;
-        tail.prev = null;
-        tail = p;
-        size--;
         return tmp;
     }
 
