@@ -1,5 +1,4 @@
 public class ArrayDeque<T> {
-
     private T[] items;
     private int head;
     private int tail;
@@ -14,7 +13,7 @@ public class ArrayDeque<T> {
         cap = 8;
     }
 
-    public void resize(int n) {
+    private void resize(int n) {
         T[] newitems = (T[]) new Object[n];
         int cnt = 0;
         for (int i = head; i != tail; i = (i + cap) % cap) {
@@ -26,7 +25,7 @@ public class ArrayDeque<T> {
         tail = cnt;
     }
 
-    public void addFirst(T item){
+    public void addFirst(T item) {
         if (size == cap) {
             resize(cap * 2);
         }
@@ -62,19 +61,33 @@ public class ArrayDeque<T> {
     }
 
     public T removeFirst() {
+        if (size == 0) {
+            return (T)null;
+        }
         T tmp = items[head];
         head = (head + 1) % cap;
         size--;
+        if (size < cap / 2) {
+            resize(cap / 2);
+        }
         return tmp;
     }
 
     public T removeLast() {
+        if (size == 0) {
+            return (T)null;
+        }
         size--;
+        if (size < cap / 2) {
+            resize(cap / 2);
+        }
         return items[--tail];
     }
 
     public T get(int index) {
-        if (index < 0 || index > size) return null;
+        if (index < 0 || index > size) {
+            return null;
+        }
         int p = head;
         while (index > 0) {
             p = (p + 1) % cap;
@@ -83,8 +96,10 @@ public class ArrayDeque<T> {
         return items[p];
     }
 
-    public T getRecursive(int index) {
-        if (index < 0 || index > size) return null;
+    private T getRecursive(int index) {
+        if (index < 0 || index > size) {
+            return null;
+        }
         int p = head;
         while (index > 0) {
             p = (p + 1) % cap;
