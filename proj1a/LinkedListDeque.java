@@ -1,12 +1,14 @@
+import java.util.List;
+
 public class LinkedListDeque<T> {
     private class ListNode {
         private T val;
         private ListNode prev;
         private ListNode next;
-        public ListNode(T item, ListNode n, ListNode pre) {
+        public ListNode(T item, ListNode n) {
             val = item;
             next = n;
-            prev = pre;
+            prev = null;
         }
     }
 
@@ -15,19 +17,36 @@ public class LinkedListDeque<T> {
     private int size;
 
     public LinkedListDeque() {
-        head = new ListNode((T)null, null, null);
+        head = new ListNode((T)null, null);
         tail = head;
         size = 0;
     }
 
     public void addFirst(T item) {
-        head.next = new ListNode(item, head.next, head);
+        ListNode r = head.next;
+        if (r != null) {
+            head.next = new ListNode(item, r);
+            r.prev = head.next;
+            head.next.prev = head;
+        } else {
+            head.next = new ListNode(item, r);
+            head.next.prev = head;
+        }
+
+        if (size == 0) {
+            tail = head.next;
+        }
         size++;
     }
 
     public void addLast(T item) {
-        tail.next = new ListNode(item, null, tail);
-        tail = tail.next;
+        if (tail == null) {
+            tail = head;
+        }
+        ListNode oldLast = tail;
+        tail = new ListNode(item, null);
+        oldLast.next = tail;
+        tail.prev = oldLast;
         size++;
     }
 
@@ -47,22 +66,20 @@ public class LinkedListDeque<T> {
         }
         System.out.println();
     }
-
+    private void printReverse() {
+        ListNode p = tail;
+        while (p != head) {
+            System.out.print(p.val + " ");
+            p = p.prev;
+        }
+        System.out.println();
+    }
     public T removeFirst() {
-        if (size == 0) {
+        if (size == 0 || head.next == null) {
             return null;
         }
-        ListNode p = head.next;
-        T tmp = p.val;
-        if (size == 1) {
-            head.next = null;
-            tail = head;
-        } else {
-            head.next = p.next;
-            if (p.next != null) {
-                p.next.prev = head;
-            }
-        }
+        head = head.next;
+        T tmp = head.val;
         size--;
         return tmp;
     }
@@ -71,12 +88,10 @@ public class LinkedListDeque<T> {
         T tmp = (T) null;
         if (size == 0) {
             return null;
-        } else if (size == 1) {
-            return removeFirst();
         } else {
             ListNode p = tail.prev;
             tmp = tail.val;
-            p.next = null;
+            if (p != null)  p.next = null;
             tail = p;
             size--;
         }
@@ -106,4 +121,35 @@ public class LinkedListDeque<T> {
         }
         return p.val;
     }
+    /* main 函数用来测试
+    public static void main(String[] args) {
+        LinkedListDeque<Integer> ll = new LinkedListDeque<Integer>();
+         // addLast 测试
+        ll.addLast(0);
+        ll.addLast(1);
+        ll.addLast(2);
+        ll.addLast(3);
+        ll.printDeque();
+        ll.printReverse();
+        System.out.println("size = " + ll.size()); // 4
+
+        ll.removeLast();
+        System.out.println("last = 0 my is " + ll.removeLast());
+        ll.printDeque();        // 0 1
+        System.out.println("size = " + ll.size()); // 2
+
+        ll.addLast(0);
+        System.out.println("first is 0, my is " + ll.removeFirst()); // ==> 0
+        ll.addLast(2);
+        ll.size();
+        System.out.println("last is 2, my is " + ll.removeLast());  // ==> 2
+        ll.addFirst(5);
+        System.out.println("first is 5, my is " + ll.removeFirst());  // ==> 5
+        ll.addFirst(7);
+        ll.addLast(8);
+        ll.addLast(9);
+        ll.addLast(10);
+        System.out.println("first is 7, my is " + ll.removeFirst());    // ==> 7
+    }
+    */
 }
