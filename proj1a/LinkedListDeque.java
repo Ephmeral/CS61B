@@ -1,7 +1,5 @@
-import java.util.List;
-
 public class LinkedListDeque<T> {
-    private class ListNode {
+        private class ListNode {
         private T val;
         private ListNode prev;
         private ListNode next;
@@ -17,7 +15,7 @@ public class LinkedListDeque<T> {
     private int size;
 
     public LinkedListDeque() {
-        head = new ListNode((T)null, null);
+        head = new ListNode(null, null);
         tail = head;
         size = 0;
     }
@@ -66,6 +64,7 @@ public class LinkedListDeque<T> {
         }
         System.out.println();
     }
+
     private void printReverse() {
         ListNode p = tail;
         while (p != head) {
@@ -74,24 +73,28 @@ public class LinkedListDeque<T> {
         }
         System.out.println();
     }
+
     public T removeFirst() {
         if (size == 0 || head.next == null) {
             return null;
         }
+        ListNode oldHead = head;
         head = head.next;
+        oldHead.next = null;
+        oldHead.prev = null;
         T tmp = head.val;
         size--;
         return tmp;
     }
 
     public T removeLast() {
-        T tmp = (T) null;
+        T tmp;
         if (size == 0) {
             return null;
         } else {
             ListNode p = tail.prev;
             tmp = tail.val;
-            if (p != null)  p.next = null;
+            p.next = null;
             tail = p;
             size--;
         }
@@ -115,6 +118,7 @@ public class LinkedListDeque<T> {
         if (index < 0 || index > size) {
             return null;
         }
+
         while (index >= 0) {
             p = p.next;
             index--;
