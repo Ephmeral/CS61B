@@ -125,35 +125,4 @@ public class LinkedListDeque<T> {
         }
         return p.val;
     }
-    /* main 函数用来测试
-    public static void main(String[] args) {
-        LinkedListDeque<Integer> ll = new LinkedListDeque<Integer>();
-         // addLast 测试
-        ll.addLast(0);
-        ll.addLast(1);
-        ll.addLast(2);
-        ll.addLast(3);
-        ll.printDeque();
-        ll.printReverse();
-        System.out.println("size = " + ll.size()); // 4
-
-        ll.removeLast();
-        System.out.println("last = 0 my is " + ll.removeLast());
-        ll.printDeque();        // 0 1
-        System.out.println("size = " + ll.size()); // 2
-
-        ll.addLast(0);
-        System.out.println("first is 0, my is " + ll.removeFirst()); // ==> 0
-        ll.addLast(2);
-        ll.size();
-        System.out.println("last is 2, my is " + ll.removeLast());  // ==> 2
-        ll.addFirst(5);
-        System.out.println("first is 5, my is " + ll.removeFirst());  // ==> 5
-        ll.addFirst(7);
-        ll.addLast(8);
-        ll.addLast(9);
-        ll.addLast(10);
-        System.out.println("first is 7, my is " + ll.removeFirst());    // ==> 7
-    }
-    */
 }

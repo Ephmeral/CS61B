@@ -37,7 +37,7 @@ public class ArrayDequeTest {
 		System.out.println("Running add/isEmpty/Size test.");
 		// System.out.println("Make sure to uncomment the lines below (and delete this print statement).");
 
-		ArrayDeque<String> lld1 = new ArrayDeque<String>();
+		ArrayDeque<String> lld1 = new ArrayDeque<>();
 
 		boolean passed = checkEmpty(true, lld1.isEmpty());
 
@@ -68,7 +68,7 @@ public class ArrayDequeTest {
 
 		// System.out.println("Make sure to uncomment the lines below (and delete this print statement).");
 
-		ArrayDeque<Integer> lld1 = new ArrayDeque<Integer>();
+		ArrayDeque<Integer> lld1 = new ArrayDeque<>();
 		// should be empty 
 		boolean passed = checkEmpty(true, lld1.isEmpty());
 
@@ -89,4 +89,4 @@ public class ArrayDequeTest {
 		addIsEmptySizeTest();
 		addRemoveTest();
 	}
-} 
+}

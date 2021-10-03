@@ -37,7 +37,7 @@ public class LinkedListDequeTest {
 		System.out.println("Running add/isEmpty/Size test.");
 		// System.out.println("Make sure to uncomment the lines below (and delete this print statement).");
 
-		LinkedListDeque<String> lld1 = new LinkedListDeque<String>();
+		LinkedListDeque<String> lld1 = new LinkedListDeque<>();
 
 		boolean passed = checkEmpty(true, lld1.isEmpty());
 
@@ -68,7 +68,7 @@ public class LinkedListDequeTest {
 
 		// System.out.println("Make sure to uncomment the lines below (and delete this print statement).");
 
-		LinkedListDeque<Integer> lld1 = new LinkedListDeque<Integer>();
+		LinkedListDeque<Integer> lld1 = new LinkedListDeque<>();
 		// should be empty 
 		boolean passed = checkEmpty(true, lld1.isEmpty());
 
@@ -91,9 +91,9 @@ public class LinkedListDequeTest {
 
 		// System.out.println("Make sure to uncomment the lines below (and delete this print statement).");
 
-		LinkedListDeque<Integer> lld1 = new LinkedListDeque<Integer>();
+		LinkedListDeque<Integer> lld1 = new LinkedListDeque<>();
 		// should be empty
-		boolean passed = checkEmpty(true, lld1.isEmpty());
+		boolean passed;
 		passed = checkEmpty(true, lld1.isEmpty());
 
 		lld1.addFirst(2);
@@ -118,4 +118,4 @@ public class LinkedListDequeTest {
 		addRemoveTest();
 		addFirstTest();
 	}
-} 
+}
