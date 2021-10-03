@@ -1,21 +1,19 @@
-interface Deque<T> {
-    public void resize(int n);
+interface Deque<Item> {
+    void addFirst(Item item);
 
-    public void addFirst(T item) ;
+    void addLast(Item item);
 
-    public void addLast(T item) ;
+    boolean isEmpty();
 
-    public boolean isEmpty();
+    int size();
 
-    public int size();
+    void printDeque();
 
-    public void printDeque();
+    Item removeFirst();
 
-    public T removeFirst();
+    Item removeLast();
 
-    public T removeLast();
+    Item get(int index);
 
-    public T get(int index);
-
-    public T getRecursive(int index);
+    Item getRecursive(int index);
 }
