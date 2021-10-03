@@ -4,15 +4,15 @@ ArrayDeque:
 
 Q: Give an example of at least one idea from the staff solution that would have made your solution better (if any).
 
-A: 
+A: resize 写的不太优雅
 
 Q: What's something you felt proud of in your code, if anything?
 
-A:
+A: 
 
 Q: What's something that was particularly inelegant in your code, if anything?
 
-A:
+A: 
 
 Q: What did you learn by talking to your partner about writing ArrayDeque?
 
@@ -24,7 +24,7 @@ A:
 
 Q: If you wrote ArrayDeque again, what would you do differently, if anything?
 
-A:
+A: yes
 
 -----
 
@@ -40,7 +40,7 @@ A:
 
 Q: What's something that was particularly inelegant in your code, if anything?
 
-A:
+A: ListDeque中没法将插入删除统一化
 
 Q: What did you learn by talking to your partner about writing LinkedListDeque?
 
