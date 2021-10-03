@@ -8,12 +8,12 @@ public class TestPalindrome {
 
     @Test
     public void testWordToDeque() {
-        Deque<Character> d = palindrome.wordToDeque("persiflage");
+        Deque<Character> dq = palindrome.wordToDeque("Headkadsal");
         StringBuilder actual = new StringBuilder();
-        for (int i = 0; i < "persiflage".length(); i++) {
-            actual.append(d.removeFirst());
+        for (int i = 0; i < "Headkadsal".length(); i++) {
+            actual.append(dq.removeFirst());
         }
-        assertEquals("persiflage", actual.toString());
+        assertEquals("Headkadsal", actual.toString());
     }
 
     @Test
@@ -23,10 +23,11 @@ public class TestPalindrome {
         assertFalse(palindrome.isPalindrome("aabbcc"));
         assertTrue(palindrome.isPalindrome("abcba"));
         assertTrue(palindrome.isPalindrome("wxllxw"));
+        assertTrue(palindrome.isPalindrome("toohottohoot"));
     }
 
     @Test
-    public void testpalindromeOffByOne() {
+    public void testPalindromeOffByOne() {
         CharacterComparator cc = new OffByOne();
         assertFalse(palindrome.isPalindrome("cat", cc));
         assertFalse(palindrome.isPalindrome("bag", cc));
@@ -36,12 +37,12 @@ public class TestPalindrome {
     }
 
     @Test
-    public void testpalindromeOffByN() {
+    public void testPalindromeOffByN() {
         CharacterComparator cc = new OffByN(5);
         assertFalse(palindrome.isPalindrome("cat", cc));
-        assertFalse(palindrome.isPalindrome("bag", cc));
+        assertFalse(palindrome.isPalindrome("baf", cc));
         assertFalse(palindrome.isPalindrome("word", cc));
-        assertTrue(palindrome.isPalindrome("flake", cc));
-        assertTrue(palindrome.isPalindrome("aedfb", cc));
+        assertFalse(palindrome.isPalindrome("flake", cc));
+        assertFalse(palindrome.isPalindrome("aedfb", cc));
     }
 }
