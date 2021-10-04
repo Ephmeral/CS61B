@@ -90,15 +90,4 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
             return returnItem;
         }
     }
-    public static void main(String[] args) {
-        ArrayRingBuffer<Integer> aset = new ArrayRingBuffer<>(5);
-        aset.enqueue(5);
-        aset.enqueue(23);
-        aset.enqueue(42);
-
-        //iteration
-        for (int i : aset) {
-            System.out.println(i);
-        }
-    }
 }
