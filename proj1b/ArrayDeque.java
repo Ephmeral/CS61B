@@ -16,7 +16,7 @@ public class ArrayDeque<Item> implements Deque<Item> {
     public void resize(int n) {
         Item[] old = (Item[]) new Object[cap];
         int cnt = 0;
-        System.arraycopy(old, 0, items, 0, cap);
+        System.arraycopy(items, 0, old, 0, cap);
         items = (Item[]) new Object[n];
         if (head >= tail) {
             System.arraycopy(old, 0, items, 0, tail);

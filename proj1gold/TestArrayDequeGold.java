@@ -23,15 +23,18 @@ public class TestArrayDequeGold {
             double numberBetweenZeroAndOne = StdRandom.uniform();
 
             if (numberBetweenZeroAndOne < 0.5) {
-                sad1.removeLast();
-                sad2.removeLast();
+                Integer actual = sad1.removeLast();
+                Integer expected = sad2.removeLast();
+                assertEquals("Oh noooo!\nThis is bad:\n   Random number " + actual
+                                + " not equal to " + expected + "!",
+                        expected, actual);
             } else {
-                sad1.removeFirst();
-                sad2.removeFirst();
+                Integer actual = sad1.removeFirst();
+                Integer expected = sad2.removeFirst();
+                assertEquals("Oh noooo!\nThis is bad:\n   Random number " + actual
+                                + " not equal to " + expected + "!",
+                        expected, actual);
             }
         }
-
-        sad1.printDeque();
-        sad2.printDeque();
     }
 }
